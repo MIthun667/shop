@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 
 const Cart = () => {
     const [product, setProduct] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const state = useSelector((state) => state.handleButton);
-
-    const dispatch = useDispatch(); 
     const handleButton = (product) =>{
-        dispatch(handleButton(product))
+        setProduct(product)
     }
 
-    useEffect(() => {
-        const getProduct = async () => {
-            setLoading(true);
-            const response = await fetch(`http://fakestoreapi.com/products/${product}`);
-            setProduct(await response.json());
-            setLoading(false);
-        }
-        getProduct();
-    }, []);
 
 
   return (
